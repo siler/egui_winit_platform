@@ -258,8 +258,9 @@ impl Platform {
                 MouseWheel { delta, .. } => {
                     let mut delta = match delta {
                         winit::event::MouseScrollDelta::LineDelta(x, y) => {
-                            let line_height = 8.0; // TODO as in egui_glium
-                            vec2(*x, *y) * line_height
+                            let line_height = 8.0; // TODO: use font height?
+                            let lines = 5.0; // Allow configurable?
+                            vec2(*x, *y) * line_height * lines
                         }
                         winit::event::MouseScrollDelta::PixelDelta(delta) => {
                             vec2(delta.x as f32, delta.y as f32)
